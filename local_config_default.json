@@ -1,0 +1,5 @@
+{
+    "nyuv2_splits_mat": "./test_resources/splits.mat",
+    "nyuv2_labeled_mat": "./test_resources/nyu_depth_v2_labeled.mat",
+    "mlflow_tracking_url": "http://localhost:7050"
+}

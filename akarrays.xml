@@ -1,0 +1,143 @@
+<groups project="Threedattack">
+    <group name="Im" help="The group of arrays that store pixel-wise data for images. The point at `(x=0, y=0)` is the top left corner and the point at `(x=-1, y=-1)` is the bottom right corner.">
+        <dims>
+            <dim name="N" help="The sample."></dim>
+            <dim name="C" help="The channel."></dim>
+            <dim name="H" help="The Y coordinate of the pixel."></dim>
+            <dim name="W" help="The X coordinate of the pixel."></dim>
+        </dims>
+        <array name="RGBs" help="The RGB images.">
+            <vals in="C">
+                <val name="R" help="The red channel of the images.">[0, 1]</val>
+                <val name="G" help="The green channel of the images.">[0, 1]</val>
+                <val name="B" help="The blue channel of the images.">[0, 1]</val>
+            </vals>
+        </array>
+        <array name="FloatMap" help="Any array that maps float values for pixels.">R</array>
+        <array name="IntMap" help="Any array that maps int values for pixels.">N</array>
+        <array name="DepthMaps" help="The array that contains dense depth maps. Since the depth maps do not necessarily contain values for all pixels, you should denote the present values using separate masks (`Images::DepthMasks`). The depth maps are not necessarily exact. They might be affine invariant or scale invariant too.">
+            <vals in="C">
+                <val name="Depth" help="The depth values for individual pixels. ">[0, ...]</val>
+            </vals>
+        </array>
+        <array name="DispMaps" help="The array that contains dense disparity maps. Since the depth maps do not necessarily contain values for all pixels, you should denote the present values using separate masks (`Images::DepthMasks`). The depth maps are not necessarily exact. They might be affine invariant or scale invariant too.">
+            <vals in="C">
+                <val name="Depth" help="The depth values for individual pixels. ">[0, ...]</val>
+            </vals>
+        </array>
+        <array name="ZBuffers" help="The Panda3d Z-buffer depth data. See the Panda3d docs for more details about the semantics of the individual values.">
+            <vals in="C">
+                <val name="Zdata" help="The Z-buffer data for individual pixels. ">[0, 1]</val>
+            </vals>
+        </array>
+        <array name="DepthMasks" help="The depth masks. Value True means that the pixel should be excluded. Value False means that the corresponding pixels should be included." set="bool">
+            <vals in="C">
+                <val name="Mask" help="The pixel-wise mask for depth maps."></val>
+            </vals>
+        </array>
+        <kind name="Single" help="There is only one image.">N==1</kind>
+    </group>
+    <group name="Points" help="The group of arrays that store pointwise data.">
+        <dims>
+            <dim name="N" help="Sample"></dim>
+            <dim name="Data" help="The data for the points."></dim>
+        </dims>
+        <array name="Space" help="The Cartesian coordinates of points in the 3d space." set="R">
+            <vals in="Data">
+                <val name="X" help="The x coordinate."></val>
+                <val name="Y" help="The y coordinate."></val>
+                <val name="Z" help="The z coordinate."></val>
+            </vals>
+        </array>
+        <array name="ASpace" help="The coordinates of points in the affine 3d space." set="R">
+            <vals in="Data">
+                <val name="X" help="The x coordinate."></val>
+                <val name="Y" help="The y coordinate."></val>
+                <val name="Z" help="The z coordinate."></val>
+                <val name="W" help="The w coordinate."></val>
+            </vals>
+        </array>
+        <array name="APlane" help="The coordinates of points in the affine 2d space." set="R">
+            <vals in="Data">
+                <val name="X" help="The x coordinate."></val>
+                <val name="Y" help="The y coordinate."></val>
+                <val name="W" help="The w coordinate."></val>
+            </vals>
+        </array>
+        <array name="Plane" help="The coordinates of points in the Cartesian 2d space." set="R">
+            <vals in="Data">
+                <val name="X" help="The x coordinate."></val>
+                <val name="Y" help="The y coordinate."></val>
+            </vals>
+        </array>
+        <array name="PlaneWithD" set="R" help="The Cartesian coordinates of points in the image space and their true distance from the camera.">
+            <vals in="Data">
+                <val name="X" help="The x coordinate."></val>
+                <val name="Y" help="The y coordinate."></val>
+                <val name="D" help="The true distance from the camera."></val>
+            </vals>
+        </array>
+        <array name="ArbData" help="Arbitrary real data for the points." set="R">
+        </array>
+        <kind name="NonEmpty" help="The array contains at least one point.">N &gt; 0</kind>
+    </group>
+    <group name="Mat" help="The matrices. These arrays contains only a single matrix or vector.">
+        <dims>
+            <dim name="Row" help="The row."></dim>
+            <dim name="Col" help="The column."></dim>
+        </dims>
+        <array name="Float" help="The matrix containing floating point numbers.">R</array>
+        <kind name="F3x4" help="The matrix is a 3x4 matrix.">Row==3,Col==4</kind>
+    </group>
+    <group name="Scalars" help="An array that contains exactly one value for each sample.">
+        <dims>
+            <dim name="N" help="The sample."></dim>
+        </dims>
+        <array name="Float" help="The values are floating point numbers for each sample.">R</array>
+        <array name="Int" help="The values are integer numbers for a each sample.">N</array>
+    </group>
+    <group name="SVals" help="The array group contains an 1d tensor that belongs to a single sample.">
+        <dims>
+            <dim name="V" help="The values."></dim>
+        </dims>
+        <array name="Float" help="The 1d tensor that contains floating point numbers for a single sample.">R</array>
+        <array name="Int" help="The 1d tensor that contains integer numbers for a single sample.">N</array>
+    </group>
+    <group name="ArbSamples" help="The arrays that contain non-defined values for each sample.">
+        <dims>
+            <dim name="N" help="The index of the samples."/>
+            <wildcard-dims min="0"></wildcard-dims>
+        </dims>
+    </group>
+    <group name="FieldGrid" help="The arrays that contain a sampled 3d field.">
+        <dims>
+            <dim name="X" help="The X coordinate."/>
+            <dim name="Y" help="The Y coordinate."/>
+            <dim name="Z" help="The Z coordinate."/>
+        </dims>
+        <array name="ScalarFieldGrid" help="The arrays that contain a sampled 3d field that has floating point values.">R</array>
+        <array name="OccupacyFieldGrid" help="The arrays that contain a sampled occupacy function. Values greater than or equal 0 mean that the specified area is inside of the object. Values smaller than 0 mean that the area is outside of the object.">[-1, 1]</array>
+        <kind name="ValidField">X &gt; 2, Y &gt; 2, Z &gt; 2</kind>
+    </group>
+    <group name="Faces" help="The arrays that contain the indices of faces.">
+        <dims>
+            <dim name="Face" help="The index of the face."></dim>
+            <dim name="Corner" help="The index of the corner."></dim>
+        </dims>
+        <array name="Faces" help="The only meaningful array in this group.">N</array>
+        <kind name="Triangles" help="The faces are specified by triangles.">Corner==3</kind>
+    </group>
+    <group name="Table" help="The arrays that contain a tabular data.">
+        <dims>
+            <dim name="Row" help="The index of the row in the table."></dim>
+            <dim name="Col" help="The index of the column in the table."></dim>
+        </dims>
+        <array name="Float" help="The array contains floating point data.">R</array>
+    </group>
+    <group name="Coords" help="The arrays that contain a sequence of coordinates alongside a single axis. This array group does not require the coordinates to be monothonically increasing or evenly spaced.">
+        <dims>
+            <dim name="N" help="The index of the coordinate."></dim>
+        </dims>
+        <array name="Float" help="The array contains floating point data.">R</array>
+    </group>
+</groups>

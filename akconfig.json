@@ -1,0 +1,12 @@
+{
+    "arrays": "akarrays.xml",
+    "targets": {
+        "array_doc": "./docs/array_formats.md",
+        "python_package": {
+            "target_path": "threedattack/tensor_types",
+            "frameworks": [
+                "numpy"
+            ]
+        }
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "shadow_blur": 0.005,
+    "shadow_map_resolution": 1024,
+    "dir_ambient_hpr_diff": 12,
+    "dir_ambient_hpr_weight": 0.2,
+    "nondir_ambient_light_r": 0.15,
+    "nondir_ambient_light_g": 0.15,
+    "nondir_ambient_light_b": 0.15,
+    "shadow_area_root": "Walls",
+    "force_shadow_0": ["NeighborHouseWindows"],
+    "world_size_x": 30.7,
+    "world_size_y": 99.1,
+    "world_size_z": 10.7
+}

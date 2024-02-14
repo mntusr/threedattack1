@@ -1,0 +1,6 @@
+{
+    "ignore": [
+        "typings/*",
+        "foreign_models/*"
+    ]
+}
