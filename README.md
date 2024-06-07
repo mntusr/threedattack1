@@ -52,4 +52,9 @@ The documentation is contained by the `docs` folder. Topics:
 
 # How to cite
 
-Coming soon.
+Authors:
+
+* Tamás Márk Fehér
+* Márton Szemenyei
+
+BibTex: Coming soon.
